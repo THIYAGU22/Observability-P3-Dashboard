@@ -23,6 +23,9 @@
 ## Create a Basic Dashboard
 *TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
 
+* Prometheus as a data source - Successful request in backend
+ ![Successful request](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/promql2-successful-req.png?raw=true)
+
 * Prometheus Metrics - Monitoring namsespace 
 ![Prometheus Metrics - Monitoring namsespace ](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/prometheusMetrics-monitoring.png?raw=true)
 
@@ -39,6 +42,7 @@
 
 * Service latency should be less than 30 ms and consistenly improving the performance of all service calls
   
+* Resource Saturation - usage of resources by a particular service, running over the limits of consumption to be scaled horizontally (updating its replicas)
 
 ## Creating SLI metrics.
 *TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
@@ -66,14 +70,15 @@
 ## Tracing our Flask App
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here.
 
+* Jaeger - Backend Trace 
+![Jaeger - Backend Trace](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jaeger-trace-star-api.png?raw=true)
+
 * Jaeger - Backend Trace - 1 
 ![Jaeger - Backend Trace - 1](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jaeger-backend-trace.png?raw=true)
 
 * Jaeger - Backend Trace - 2
 ![Jaeger - Backend Trace - 2](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jaeger-trace-2.png?raw=true)
 
-* Jaeger - Backend Trace - 3
-![Jaeger - Backend Trace - 3](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jaeger-backend-trace.png?raw=true)
 
 ## Jaeger in Dashboards
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
@@ -85,15 +90,13 @@
 * PromQL - Jaeger 
  ![PromQL - Jaeger](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/promql2-jaeger.png?raw=true)
 
-* PromQL - Successful request in backend
- ![Successful request](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/promql2-successful-req.png?raw=true)
 
 ## Report Error
 *TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue.
 
 TROUBLE TICKET
 
-Name: Backend Service - /star method -HTTP 500
+Name: Backend Service - POST method on /star returns 500 Response Status
 
 Date: 10/24/2021
 
@@ -103,7 +106,11 @@ Affected Area: Backend Service
 
 Severity: CRITICAL 
 
-Description: Path /star api indicates a mongodb resource which doesnt exists.
+Description:  /star api indicates a mongodb resource which doesnt exists at all mongodb://example-mongodb-svc.default.svc.cluster.local:27017/example-mongodb
+
+There's an issue around the /star service call found in the trace.
+ ![jaeger-trace-star-api](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/grafana-final-dashboard.png)
+
 
 
 ## Creating SLIs and SLOs
@@ -144,3 +151,14 @@ Description: Path /star api indicates a mongodb resource which doesnt exists.
 ![Grafana-Dashboard-2](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/grafana-final-dashboard1.png)
 
 ![Grafana-Dashboard-3](https://github.com/THIYAGU22/Observability-P3-Dashboard/blob/main/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/grafana-final-dashboard2.png?raw=true)
+
+* CPU Utilization --- Percentage of CPU by cluster 
+* Memory Usage --- Percentage of memory used by cluster
+* Capturing Exceptional Request --- 4xx and 5xx errors 
+* Total http request --- http requests hit by specifc services
+* Successful http request --- capturing 200 OK status code in backend service 
+* Memory Usage by pod
+* CPU utilization by pod 
+* Replicas available in each service 
+* Jaeger tracing on backend service 
+
